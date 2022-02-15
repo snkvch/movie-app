@@ -1,13 +1,13 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import './App.css';
-import { PATHS } from './utils/paths.util';
+import Header from 'components/Header/Header';
+import { HomePage } from 'pages/HomePage';
+import { MovieDetails } from 'pages/MovieDetails';
+import { Wishlist } from 'pages/Wishlist';
 
-import Header from './components/header/header.component';
-import HomePage from './pages/homepage/homepage.component';
-import MovieDetails from './pages/movie-details/movie-details.component';
-import Wishlist from './pages/wishlist/wishlist.component';
+import './App.css';
+import { PATHS } from './utils/paths';
 
 function App() {
   return (
