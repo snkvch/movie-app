@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { MovieList } from 'components/MovieList';
+import fetchAsyncMovies from 'api/fetchMovies';
+import fetchAsyncShows from 'api/fetchShows';
 
 function HomePage() {
-  return <h1>Home page</h1>;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAsyncMovies());
+    dispatch(fetchAsyncShows());
+  }, [dispatch]);
+
+  return <MovieList />;
 }
 
 export default HomePage;
