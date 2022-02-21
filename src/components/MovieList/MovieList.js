@@ -1,39 +1,25 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
+import { useSelector } from 'react-redux';
 
-import { getAllMovies, getAllShows } from 'redux/movies/moviesSlice';
 import { MovieItem } from 'components/MovieItem';
-
+import { getAllMovies } from 'redux/selectors';
 import { ListContainer, List, Title } from './MovieList.styles';
 
 const MOVIES = 'MOVIES';
-const SHOWS = 'SHOWS';
 
 function MovieList() {
-  const movies = useSelector(getAllMovies);
-  const shows = useSelector(getAllShows);
+  const moviesSelector = useSelector(getAllMovies);
 
   const renderMovies =
-    movies.Response === 'True' ? (
-      movies.Search.map((movie) => (
+    moviesSelector.Response === 'True' ? (
+      moviesSelector.Search.map((movie) => (
         <Grid item key={movie.id} xs={12} sm={6} md={3}>
           <MovieItem data={movie} />
         </Grid>
       ))
     ) : (
-      <h1>{movies.Error}</h1>
-    );
-
-  const renderShows =
-    shows.Response === 'True' ? (
-      shows.Search.map((show) => (
-        <Grid item key={show.id} xs={12} sm={6} md={3}>
-          <MovieItem data={show} />
-        </Grid>
-      ))
-    ) : (
-      <h1>{shows.Error}</h1>
+      <h1>{moviesSelector.Error}</h1>
     );
 
   return (
@@ -41,10 +27,6 @@ function MovieList() {
       <ListContainer>
         <Title>{MOVIES}</Title>
         <List container>{renderMovies}</List>
-      </ListContainer>
-      <ListContainer>
-        <Title>{SHOWS}</Title>
-        <List container>{renderShows}</List>
       </ListContainer>
     </div>
   );

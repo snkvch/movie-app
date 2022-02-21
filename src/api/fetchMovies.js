@@ -1,17 +1,15 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import movieApi from 'api/MovieApi';
+import axios from 'axios';
 
 const { REACT_APP_API_KEY } = process.env;
+const { REACT_APP_API_BASE } = process.env;
 
-const fetchAsyncMovies = createAsyncThunk(
-  'movies/fetchAsyncMovies',
-  async () => {
-    const movieText = 'Friends';
-    const response = await movieApi.get(
-      `/?apiKey=${REACT_APP_API_KEY}&s=${movieText}&type=movie`
-    );
-    return response.data;
-  }
-);
+function fetchMovies() {
+  const movieText = 'Friends';
 
-export default fetchAsyncMovies;
+  return axios.request({
+    method: 'get',
+    url: `${REACT_APP_API_BASE}/?apiKey=${REACT_APP_API_KEY}&s=${movieText}&type=movie`,
+  });
+}
+
+export default fetchMovies;
