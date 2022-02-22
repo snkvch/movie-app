@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { getMovie } from 'redux/actions';
+import { getMovie } from 'redux/movies/actions';
 
 import { MovieList } from 'components/MovieList';
 

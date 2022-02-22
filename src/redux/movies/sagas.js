@@ -1,7 +1,7 @@
 import { takeEvery, call, put } from '@redux-saga/core/effects';
 
 import fetchMovies from 'api/fetchMovies';
-import { GET_MOVIE, MOVIES_FETCH_FAIED, setMovie } from 'redux/actions';
+import { GET_MOVIE, MOVIES_FETCH_FAILED, setMovie } from 'redux/movies/actions';
 
 function* requestMovie() {
   try {
@@ -9,7 +9,7 @@ function* requestMovie() {
     const { data } = response;
     yield put(setMovie(data));
   } catch (error) {
-    yield put({ type: MOVIES_FETCH_FAIED });
+    yield put({ type: MOVIES_FETCH_FAILED });
   }
 }
 
