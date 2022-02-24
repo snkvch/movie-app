@@ -8,5 +8,5 @@ export const getMovie = () => ({
 
 export const setMovie = (movie) => ({
   type: SET_MOVIE,
-  movie,
+  payload: movie,
 });

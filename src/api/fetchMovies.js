@@ -12,4 +12,11 @@ function fetchMovies() {
   });
 }
 
+export function fetchMovieDetails(imdbID) {
+  return axios.request({
+    method: 'get',
+    url: `${REACT_APP_API_BASE}/?apiKey=${REACT_APP_API_KEY}&i=${imdbID}&Plot=full`,
+  });
+}
+
 export default fetchMovies;

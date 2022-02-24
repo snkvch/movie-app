@@ -7,7 +7,7 @@ const initialState = {
 const moviesReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SET_MOVIE: {
-      const { movie } = action;
+      const movie = action.payload;
       return { ...state, movie };
     }
     default:

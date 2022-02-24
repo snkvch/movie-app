@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import {
   StyledCard,
@@ -13,11 +14,13 @@ function MovieItem(props) {
 
   return (
     <StyledCard>
-      <Media image={data.Poster} alt={data.Title} />
-      <Content>
-        <MovieTitle>{data.Title}</MovieTitle>
-        <MovieYear>{data.Year}</MovieYear>
-      </Content>
+      <NavLink to={`/movie/${data.imdbID}`}>
+        <Media image={data.Poster} alt={data.Title} />
+        <Content>
+          <MovieTitle>{data.Title}</MovieTitle>
+          <MovieYear>{data.Year}</MovieYear>
+        </Content>
+      </NavLink>
     </StyledCard>
   );
 }
