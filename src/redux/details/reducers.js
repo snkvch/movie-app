@@ -11,7 +11,7 @@ const movieDetailsReducer = (state = initialState, action = {}) => {
       return { ...state, details };
     }
     case REMOVE_MOVIE_DETAILS: {
-      return { ...state, initialState };
+      return initialState;
     }
     default:
       return state;
