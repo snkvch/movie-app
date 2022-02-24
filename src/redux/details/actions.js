@@ -5,12 +5,12 @@ export const DETAILS_FETCH_FAILED = 'DETAILS_FETCH_FAILED';
 
 export const getMovieDetailsAction = (imdbID) => ({
   type: GET_MOVIE_DETAILS,
-  imdbID,
+  payload: imdbID,
 });
 
 export const setMovieDetailsAction = (details) => ({
   type: SET_MOVIE_DETAILS,
-  details,
+  payload: details,
 });
 
 export const removeMovieDetailsAction = () => ({

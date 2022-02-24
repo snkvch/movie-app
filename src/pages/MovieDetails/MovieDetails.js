@@ -31,43 +31,58 @@ function MovieDetails() {
     };
   }, [dispatch, imdbID]);
 
+  const {
+    Title,
+    imdbRating,
+    imdbVotes,
+    Runtime,
+    Year,
+    Plot,
+    Director,
+    Actors,
+    Genre,
+    Language,
+    Awards,
+    Poster,
+  } = movieSelector;
+
   return (
     <MovieSection>
       <SectionLeft>
-        <MovieTitle>{movieSelector.Title}</MovieTitle>
-        <Rating value={movieSelector.imdbRating * 0.5} readOnly />
+        <MovieTitle>{Title}</MovieTitle>
+        <Rating value={imdbRating * 0.5} readOnly />
         <MovieRating>
-          <span> IMDB Rating : {movieSelector.imdbRating} 👍 </span>
-          <span> IMDB Votes : {movieSelector.imdbVotes} 👥 </span>
-          <span> Runtime : {movieSelector.Runtime} 🕐 </span>
-          <span> Year : {movieSelector.Year} 🗓 </span>
+          <span> IMDB Rating : {imdbRating} 👍 </span>
+          <span> IMDB Votes : {imdbVotes} 👥 </span>
+          <span> Runtime : {Runtime} 🕐 </span>
+          <span> Year : {Year} 🗓 </span>
         </MovieRating>
-        <MoviePlot>{movieSelector.Plot}</MoviePlot>
+        <MoviePlot>{Plot}</MoviePlot>
         <MovieInfo>
           <div>
             <span>Director:</span>
-            <span>{movieSelector.Director}</span>
+            <span>{Director}</span>
           </div>
           <div>
             <span>Cast:</span>
-            <span>{movieSelector.Actors}</span>
+            <span>{Actors}</span>
           </div>
           <div>
             <span>Genres:</span>
-            <span>{movieSelector.Genre}</span>
+            <span>{Genre}</span>
           </div>
           <div>
             <span>Languages:</span>
-            <span>{movieSelector.Language}</span>
+            <span>{Language}</span>
           </div>
           <div>
             <span>Awards:</span>
-            <span>{movieSelector.Awards}</span>
+            <span>{Awards}</span>
           </div>
         </MovieInfo>
       </SectionLeft>
       <SectionRight>
-        <img src={movieSelector.Poster} alt={movieSelector.Title} />
+        <img src={Poster} alt={Title} />
       </SectionRight>
     </MovieSection>
   );

@@ -10,7 +10,7 @@ import {
 
 export function* handleGetMovie(action = {}) {
   try {
-    const response = yield call(fetchMovieDetails, action.imdbID);
+    const response = yield call(fetchMovieDetails, action.payload);
     const { data } = response;
     yield put(setMovieDetailsAction(data));
   } catch (error) {
