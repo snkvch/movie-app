@@ -12,7 +12,7 @@ function SearchBar() {
   const [textInput, setTextInput] = useState('');
   const dispatch = useDispatch();
 
-  const submitHander = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     dispatch(getMovie(textInput));
   };
@@ -22,7 +22,7 @@ function SearchBar() {
 
   return (
     <Search>
-      <form onSubmit={submitHander}>
+      <form onSubmit={submitHandler}>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
