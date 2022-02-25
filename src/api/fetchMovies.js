@@ -3,12 +3,13 @@ import axios from 'axios';
 const { REACT_APP_API_KEY } = process.env;
 const { REACT_APP_API_BASE } = process.env;
 
-function fetchMovies() {
-  const movieText = 'Friends';
+function fetchMovies(textInput) {
+  const defaultMovie = 'Friends';
+  const movie = textInput || defaultMovie;
 
   return axios.request({
     method: 'get',
-    url: `${REACT_APP_API_BASE}/?apiKey=${REACT_APP_API_KEY}&s=${movieText}&type=movie`,
+    url: `${REACT_APP_API_BASE}/?apiKey=${REACT_APP_API_KEY}&s=${movie}&type=movie`,
   });
 }
 

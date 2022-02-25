@@ -3,9 +3,9 @@ import { takeEvery, call, put } from '@redux-saga/core/effects';
 import fetchMovies from 'api/fetchMovies';
 import { GET_MOVIE, MOVIES_FETCH_FAILED, setMovie } from 'redux/movies/actions';
 
-function* requestMovie() {
+function* requestMovie({ payload }) {
   try {
-    const response = yield call(fetchMovies);
+    const response = yield call(fetchMovies, payload);
     const { data } = response;
     yield put(setMovie(data));
   } catch (error) {
