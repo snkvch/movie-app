@@ -2,12 +2,19 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Rating } from '@mui/material';
+import { toast, ToastContainer } from 'react-toastify';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   getMovieDetailsAction,
   removeMovieDetailsAction,
 } from 'redux/details/actions';
 import { getMovieDetails } from 'redux/details/selectors';
+import { addToWishlist, removeFromWishlist } from 'redux/wishlist/actions';
+import { wishlistSelector } from 'redux/wishlist/selectors';
+import CustomButton from 'components/CustomButton/CustomButton';
 
 import {
   MovieTitle,
@@ -17,12 +24,14 @@ import {
   MoviePlot,
   MovieInfo,
   SectionRight,
+  MoviePoster,
 } from './MovieDetails.styles';
 
 function MovieDetails() {
   const { imdbID } = useParams();
   const dispatch = useDispatch();
   const movieSelector = useSelector(getMovieDetails);
+  const getMovieCheck = useSelector(wishlistSelector);
 
   useEffect(() => {
     dispatch(getMovieDetailsAction(imdbID));
@@ -45,6 +54,15 @@ function MovieDetails() {
     Awards,
     Poster,
   } = movieSelector;
+
+  const saveMovie = () => {
+    dispatch(addToWishlist(movieSelector));
+    toast.success('Movie was added to your wishlist');
+  };
+  const removeMovie = () => {
+    dispatch(removeFromWishlist(movieSelector));
+    toast.warn('Movie was removed from your wishlist');
+  };
 
   return (
     <MovieSection>
@@ -82,8 +100,24 @@ function MovieDetails() {
         </MovieInfo>
       </SectionLeft>
       <SectionRight>
-        <img src={Poster} alt={Title} />
+        <MoviePoster>
+          <img src={Poster} alt={Title} />
+        </MoviePoster>
+        {getMovieCheck.findIndex((movie) => movie.imdbID === imdbID) === -1 ? (
+          <CustomButton
+            text="Add to wishlist"
+            onClick={saveMovie}
+            endIcon={<AddIcon />}
+          />
+        ) : (
+          <CustomButton
+            text="Remove from wishlist"
+            onClick={removeMovie}
+            endIcon={<RemoveIcon />}
+          />
+        )}
       </SectionRight>
+      <ToastContainer autoClose={1500} />
     </MovieSection>
   );
 }

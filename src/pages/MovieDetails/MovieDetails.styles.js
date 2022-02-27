@@ -13,6 +13,8 @@ export const SectionLeft = styled('div')(() => ({}));
 
 export const SectionRight = styled('div')(() => ({
   margin: '30px 30px',
+  display: 'flex',
+  flexDirection: 'column',
 }));
 
 export const MovieTitle = styled('h1')(() => ({
@@ -41,3 +43,5 @@ export const MovieInfo = styled('div')(() => ({
     color: theme.palette.secondary.light,
   },
 }));
+
+export const MoviePoster = styled('div')(() => ({}));
