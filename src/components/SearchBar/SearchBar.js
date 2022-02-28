@@ -15,6 +15,7 @@ function SearchBar() {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(getMovie(textInput));
+    setTextInput('');
   };
   const handlerChange = (e) => {
     setTextInput(e.target.value);
