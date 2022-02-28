@@ -66,58 +66,65 @@ function MovieDetails() {
 
   return (
     <MovieSection>
-      <SectionLeft>
-        <MovieTitle>{Title}</MovieTitle>
-        <Rating value={imdbRating * 0.5} readOnly />
-        <MovieRating>
-          <span> IMDB Rating : {imdbRating} 👍 </span>
-          <span> IMDB Votes : {imdbVotes} 👥 </span>
-          <span> Runtime : {Runtime} 🕐 </span>
-          <span> Year : {Year} 🗓 </span>
-        </MovieRating>
-        <MoviePlot>{Plot}</MoviePlot>
-        <MovieInfo>
-          <div>
-            <span>Director:</span>
-            <span>{Director}</span>
-          </div>
-          <div>
-            <span>Cast:</span>
-            <span>{Actors}</span>
-          </div>
-          <div>
-            <span>Genres:</span>
-            <span>{Genre}</span>
-          </div>
-          <div>
-            <span>Languages:</span>
-            <span>{Language}</span>
-          </div>
-          <div>
-            <span>Awards:</span>
-            <span>{Awards}</span>
-          </div>
-        </MovieInfo>
-      </SectionLeft>
-      <SectionRight>
-        <MoviePoster>
-          <img src={Poster} alt={Title} />
-        </MoviePoster>
-        {getMovieCheck.findIndex((movie) => movie.imdbID === imdbID) === -1 ? (
-          <CustomButton
-            text="Add to wishlist"
-            onClick={saveMovie}
-            endIcon={<AddIcon />}
-          />
-        ) : (
-          <CustomButton
-            text="Remove from wishlist"
-            onClick={removeMovie}
-            endIcon={<RemoveIcon />}
-          />
-        )}
-      </SectionRight>
-      <ToastContainer autoClose={1500} />
+      {Object.keys(movieSelector).length === 0 ? (
+        <div>Loading ...</div>
+      ) : (
+        <div>
+          <SectionLeft>
+            <MovieTitle>{Title}</MovieTitle>
+            <Rating value={imdbRating * 0.5} readOnly />
+            <MovieRating>
+              <span> IMDB Rating : {imdbRating} 👍 </span>
+              <span> IMDB Votes : {imdbVotes} 👥 </span>
+              <span> Runtime : {Runtime} 🕐 </span>
+              <span> Year : {Year} 🗓 </span>
+            </MovieRating>
+            <MoviePlot>{Plot}</MoviePlot>
+            <MovieInfo>
+              <div>
+                <span>Director:</span>
+                <span>{Director}</span>
+              </div>
+              <div>
+                <span>Cast:</span>
+                <span>{Actors}</span>
+              </div>
+              <div>
+                <span>Genres:</span>
+                <span>{Genre}</span>
+              </div>
+              <div>
+                <span>Languages:</span>
+                <span>{Language}</span>
+              </div>
+              <div>
+                <span>Awards:</span>
+                <span>{Awards}</span>
+              </div>
+            </MovieInfo>
+          </SectionLeft>
+          <SectionRight>
+            <MoviePoster>
+              <img src={Poster} alt={Title} />
+            </MoviePoster>
+            {getMovieCheck.findIndex((movie) => movie.imdbID === imdbID) ===
+            -1 ? (
+              <CustomButton
+                text="Add to wishlist"
+                onClick={saveMovie}
+                endIcon={<AddIcon />}
+              />
+            ) : (
+              <CustomButton
+                text="Remove from wishlist"
+                onClick={removeMovie}
+                endIcon={<RemoveIcon />}
+              />
+            )}
+          </SectionRight>
+          <ToastContainer autoClose={1500} />
+        </div>
+      )}
     </MovieSection>
   );
 }
