@@ -69,7 +69,7 @@ function MovieDetails() {
       {Object.keys(movieSelector).length === 0 ? (
         <div>Loading ...</div>
       ) : (
-        <div>
+        <>
           <SectionLeft>
             <MovieTitle>{Title}</MovieTitle>
             <Rating value={imdbRating * 0.5} readOnly />
@@ -123,7 +123,7 @@ function MovieDetails() {
             )}
           </SectionRight>
           <ToastContainer autoClose={1500} />
-        </div>
+        </>
       )}
     </MovieSection>
   );
